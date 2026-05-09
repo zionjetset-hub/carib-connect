@@ -41,17 +41,27 @@ export default function Home() {
     }
   };
 
-  const handleLead = (e) => {
-    e.preventDefault();
-    if (email && phone) {
-      const lead = {
-        email, phone, timestamp: new Date().toISOString(),
-        ip_address: ip, source: 'carib-connect.vercel.app', consent: true
-      };
-      console.log('LEAD CAPTURED:', lead);
-      setSubmitted(true);
-    }
-  };
+  const handleLead = async (e) => {
+  e.preventDefault();
+  if (email && phone) {
+    const lead = {
+      email, 
+      phone, 
+      timestamp: new Date().toISOString(),
+      ip_address: ip, 
+      source: 'carib-connect.vercel.app', 
+      consent: true
+    };
+    
+    await fetch('https://formspree.io/f/meenrvop', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead)
+    });
+    
+    setSubmitted(true);
+  }
+};
 
   const Button = ({ children, onClick, style = {} }) => (
     <button onClick={onClick} style={{
