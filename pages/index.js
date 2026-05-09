@@ -10,7 +10,7 @@ export default function Home() {
   const audioRef = useRef(null);
 
   // CHANGE THIS URL TO CHANGE THE SONG ANYTIME
-  const MUSIC_URL = 'https://raw.githubusercontent.com/zionjetset-hub/carib-connect/main/DA20%PROFESSOR-EVERY20%JAMAICAN-BOUNCE.mp3';
+  const MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -97,4 +97,61 @@ export default function Home() {
               type="email" placeholder="Your Email" value={email}
               onChange={(e) => setEmail(e.target.value)} required
               style={{width:'100%', padding:'12px', marginBottom:'8px', borderRadius:'8px',
-                border:'1
+                border:'1px solid #333', background:'#000', color:'#fff', fontSize:'16px'}}
+            />
+            <input 
+              type="tel" placeholder="Your JA Phone: 876..." value={phone}
+              onChange={(e) => setPhone(e.target.value)} required
+              style={{width:'100%', padding:'12px', marginBottom:'12px', borderRadius:'8px',
+                border:'1px solid #333', background:'#000', color:'#fff', fontSize:'16px'}}
+            />
+            <button type="submit" style={{
+              width:'100%', background:'#FED100', color:'#000', fontWeight:'900',
+              padding:'14px', borderRadius:'8px', border:'none', fontSize:'16px', cursor:'pointer'
+            }}>
+              GET ACCESS
+            </button>
+            <p style={{fontSize:'10px', opacity:0.6, margin:'8px 0 0', lineHeight:'1.3'}}>
+              *By submitting, you agree to be contacted by Carib Connect and select partners regarding calling services. 
+              Access subject to availability. Msg & data rates may apply.
+            </p>
+          </form>
+        ) : (
+          <div style={{
+            background:'#111', border:'2px solid #FED100', borderRadius:'12px',
+            padding:'16px', marginBottom:'20px', color:'#FED100'
+          }}>
+            <p style={{margin:0, fontWeight:'700'}}>Success! Use the dialer below to call the US now.</p>
+          </div>
+        )}
+
+        <div style={{
+          background:'#111', border:'2px solid #FED100', borderRadius:'12px',
+          padding:'16px', fontSize:'32px', fontWeight:'700', marginBottom:'20px',
+          minHeight:'70px', display:'flex', alignItems:'center', justifyContent:'center', color:'#FED100'
+        }}>
+          +1 {number}
+        </div>
+
+        <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'12px', marginBottom:'12px'}}>
+          {['1','2','3','4','5','6','7','8','9','*','0','#'].map(d => (
+            <Button key={d} onClick={() => addDigit(d)}>{d}</Button>
+          ))}
+        </div>
+
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px'}}>
+          <Button onClick={deleteDigit} style={{background:'#333', fontSize:'18px'}}>DELETE</Button>
+          <Button onClick={callNumber} style={{background:'#FED100', color:'#000', fontSize:'18px', fontWeight:'900'}}>
+            JET CALL
+          </Button>
+        </div>
+
+        <p style={{fontSize:'10px', opacity:0.4, marginTop:'20px'}}>
+          © 2026 Carib Connect. Calls use your carrier minutes. 
+          <a href="/privacy" style={{color:'#FED100', textDecoration:'none'}}> Privacy</a> | 
+          <a href="/terms" style={{color:'#FED100', textDecoration:'none'}}> Terms</a>
+        </p>
+      </div>
+    </main>
+  )
+}
