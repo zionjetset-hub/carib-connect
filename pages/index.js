@@ -10,7 +10,7 @@ export default function Home() {
   const audioRef = useRef(null);
 
   // CHANGE THIS URL TO CHANGE THE SONG ANYTIME
-  const MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+  const MUSIC_URL = 'https://raw.githubusercontent.com/zionjetset-hub/carib-connect/main/DA20%PROFESSOR-EVERY20%JAMAICAN-BOUNCE.mp3';
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
